@@ -5,7 +5,7 @@
 
 import tweepy #https://github.com/tweepy/tweepy
 import json
-
+import wget
 
 #Twitter API credentials
 consumer_key = "0gzrWgU42coZopvSul5XWIyIl"
@@ -46,9 +46,26 @@ def get_all_tweets(screen_name):
         
         #update the id of the oldest tweet less one
         oldest = alltweets[-1].id - 1
+
+
+
         if(len(alltweets) > 15):
             break
         print("...%s tweets downloaded so far" % (len(alltweets)))
+
+    media_files = set()
+    for status in alltweets:
+        media = status.entities.get('media',[])
+        if(len(media) > 0):
+            for i in range(len(media)): # there should be a parameter to represent the amount of pictures in a twitter
+                # print(len(media)) # media cannot represent the amount of pictures in one twitter
+             media_files.add(media[i]['media_url'])
+ 
+    for media_file in media_files:
+        wget.download(media_file)
+
+
+
        
     #write tweet objects to JSON
     file = open('tweet.json', 'w') 
@@ -62,4 +79,4 @@ def get_all_tweets(screen_name):
 
 if __name__ == '__main__':
     #pass in the username of the account you want to download
-    get_all_tweets("@YZHSU")
+    get_all_tweets("@LiyiCao")
