@@ -1,0 +1,5 @@
+Lables:blue
+advertising
+album cover
+banner
+product

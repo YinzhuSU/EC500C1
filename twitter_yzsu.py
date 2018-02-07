@@ -5,7 +5,8 @@ import urllib
 import os
 import requests
 import io
-
+from google.cloud import vision
+from google.cloud.vision import types
 
 
 # Imports the Google Cloud client library
@@ -73,36 +74,38 @@ def get_all_tweets(screen_name):
         print(media_file)
         wget.download(media_file)
   
+    os.system("ffmpeg -framerate 5 -pattern_type glob -i '*.jpg'     -c:v libx264 -r 30 -pix_fmt yuv420p production.mp4")
    
-#     # client = vision.ImageAnnotatorClient()
+    # client = vision.ImageAnnotatorClient()
 
 
-#     m=1
-
-#     OBJ = [pic for pic in listdir() if pic.endswith('jpg')]
-#     for i in OBJ:
-#         file_name = os.path.join(os.path.dirname(__file__),i)
+    #m=1
+    client = vision.ImageAnnotatorClient()
+    OBJ = [pic for pic in listdir() if pic.endswith('jpg')]
+    for i in OBJ:
+        file_name = os.path.join(os.path.dirname(__file__),i)
   
     
 
-# # Loads the image into memory
-#         with io.open(file_name, 'rb') as document_file:
-#              content = document_file.read()
-#         file = open("label.txt","w")
-#         image = types.Image(content=content)
+# Loads the image into memory
+        with io.open(file_name, 'rb') as document_file:
+             content = document_file.read()
+        file = open("label.txt","w")
+        image = types.Image(content=content)
 
-#         # Performs label detection on the image file
-#         response = client.label_detection(image=image)
-#         labels = response.label_annotations
+        # Performs label detection on the image file
+        response = client.label_detection(image=image)
+        labels = response.label_annotations
         
-#         print('Labels:')
-#         file.write('Lables:')
-#         for label in labels:
-#            file.write(label.description+'\n')
-#            print(label.description)
+        print('Labels:')
+        file.write('Lables:')
+        for label in labels:
+           file.write(label.description+'\n')
+           print(label.description)
         
-#         file.close()
-    os.system("ffmpeg -framerate 5 -pattern_type glob -i '*.jpg'     -c:v libx264 -r 30 -pix_fmt yuv420p video.mp4")
+        file.close()
+
+    return label.description
 
             
 if __name__ == '__main__':

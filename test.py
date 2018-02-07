@@ -6,7 +6,7 @@ from google.cloud import vision
 from google.cloud.vision import types
 
 # Instantiates a client
-GOOGLE_APPLICATION_CREDENTIALS='./key.json'
+#GOOGLE_APPLICATION_CREDENTIALS='cv.json'
 client = vision.ImageAnnotatorClient()
 
 # The name of the image file to annotate
