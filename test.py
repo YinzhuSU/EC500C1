@@ -6,13 +6,13 @@ from google.cloud import vision
 from google.cloud.vision import types
 
 # Instantiates a client
-GOOGLE_APPLICATION_CREDENTIALS="key.json"
+GOOGLE_APPLICATION_CREDENTIALS='./key.json'
 client = vision.ImageAnnotatorClient()
 
 # The name of the image file to annotate
 file_name = os.path.join(
     os.path.dirname(__file__),
-    'resources/wakeupcat.jpg')
+    'su.jpg')
 
 # Loads the image into memory
 with io.open(file_name, 'rb') as image_file:
