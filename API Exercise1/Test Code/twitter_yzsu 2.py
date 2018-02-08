@@ -9,17 +9,17 @@ import io
 
 
 # Imports the Google Cloud client library
-from google.cloud import vision
+# from google.cloud import vision
 
-from google.cloud.vision import types
+# from google.cloud.vision import types
 from os import listdir
 
 
 #Twitter API credentials
-consumer_key = "uSaUtFQs3UNEQBIBPu1lhiSBO"
-consumer_secret = "JKOgEDwrsAlCM71Lf2UTaR8ID4c12AMmSPJtj9EwTxPySwZrdP"
-access_key = "920759201663803393-Ionn5JJjejdcAYBaeM9kfy7QVOQaIp4"
-access_secret = "uIz5FrBovzM1NJa7zl2qNXUyUUXFH6LHDzSK7kpr9GPgg"
+consumer_key = "0gzrWgU42coZopvSul5XWIyIl"
+consumer_secret = "CI2Q8x1suBlPsfz3y5QkRqI62rpgdYZQKM552d6Y69x8L0b4Y1"
+access_key = "920759443759026177-4NdyCaI36qzRMOk2pbuiRZ2dLHpDWoP"
+access_secret = "7PqhynxGdD0Ci4Qxb1okbm96C1srMCimTeDiI20vL5gkr"
 
 
 def get_all_tweets(screen_name):
@@ -60,8 +60,10 @@ def get_all_tweets(screen_name):
 
     media_files = set()
     for status in alltweets :
-        media = status.extended_entities.get('media', [])
-        # print (media[0])
+        try:
+            media = status.extended_entities.get('media', [])
+        except:
+            media = status.entities.get('media', [])
         if(len(media) > 0):
             for i in range(len(media)):
              media_files.add(media[i]['media_url'])
@@ -69,41 +71,41 @@ def get_all_tweets(screen_name):
     for media_file in media_files:
 
         print(media_file)
-        wget.download(media_file,"picture")
+        wget.download(media_file)
   
    
-    client = vision.ImageAnnotatorClient()
+#     # client = vision.ImageAnnotatorClient()
 
 
-    m=1
+#     m=1
 
-    OBJ = [pic for pic in listdir() if pic.endswith('jpg')]
-    for i in OBJ:
-        file_name = os.path.join(os.path.dirname(__file__),i)
+#     OBJ = [pic for pic in listdir() if pic.endswith('jpg')]
+#     for i in OBJ:
+#         file_name = os.path.join(os.path.dirname(__file__),i)
   
     
 
-# Loads the image into memory
-        with io.open(file_name, 'rb') as document_file:
-             content = document_file.read()
-        file = open("label.txt","w")
-        image = types.Image(content=content)
+# # Loads the image into memory
+#         with io.open(file_name, 'rb') as document_file:
+#              content = document_file.read()
+#         file = open("label.txt","w")
+#         image = types.Image(content=content)
 
-        # Performs label detection on the image file
-        response = client.label_detection(image=image)
-        labels = response.label_annotations
+#         # Performs label detection on the image file
+#         response = client.label_detection(image=image)
+#         labels = response.label_annotations
         
-        print('Labels:')
-        file.write('Lables:')
-        for label in labels:
-           file.write(label.description+'\n')
-           print(label.description)
+#         print('Labels:')
+#         file.write('Lables:')
+#         for label in labels:
+#            file.write(label.description+'\n')
+#            print(label.description)
         
-        file.close()
-    os.system("cd ./picture && ffmpeg -framerate 1 -pattern_type glob -i '*.jpg'     -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4")
+#         file.close()
+    os.system("ffmpeg -framerate 5 -pattern_type glob -i '*.jpg'     -c:v libx264 -r 30 -pix_fmt yuv420p video.mp4")
 
             
 if __name__ == '__main__':
     #pass in the username of the account you want to download
-    get_all_tweets("@LiyiCao")
+    get_all_tweets("@YZHSU")
 
