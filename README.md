@@ -1,4 +1,4 @@
-# EC500C1 Building Software
+# EC500C1 Building Software API Exercise 1
 ## Description
 ### Function of this Miniproject
 This is an API exercise. In the exercise, the user can:
