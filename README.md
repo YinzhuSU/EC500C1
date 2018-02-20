@@ -1,6 +1,6 @@
 # EC500C1 Building Software
-# Description
-## Function of this Miniproject
+## Description
+### Function of this Miniproject
 This is an API exercise. In the exercise, the user can:
 1. Download the first 15 pictures from a specific twitter account by tweepy API.
 2. Transform the pictures into a video by FFMPEG API.
@@ -13,6 +13,6 @@ In the main python program file, you can change this part of code to adjust the 
 You can change the "5" to adjust the pictures you want to have in the video. And you can change the "30" to change the phrame of the video. And you can change the "producion.mp4" to change the video's name.
 But there are some problems.
 
-## Problems
+### Problems
 1. Till now, this program can only combine ".jpg" format pictures into video. If some pictures in the twitter are ".png" format, they will not be included in the video.
 2. If the change the video part's format from ".mp4" to other video format, such as ".avi", it still gonna work, but the showing speed of the video will be asymmetry.
