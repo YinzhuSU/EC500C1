@@ -16,3 +16,4 @@ But there are some problems.
 ### Problems
 1. Till now, this program can only combine ".jpg" format pictures into video. If some pictures in the twitter are ".png" format, they will not be included in the video.
 2. If the change the video part's format from ".mp4" to other video format, such as ".avi", it still gonna work, but the showing speed of the video will be asymmetry.
+3. The txt document produced contains only one picture's label, instead of all the pictures contained in the video.
