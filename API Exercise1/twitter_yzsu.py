@@ -17,10 +17,10 @@ from os import listdir
 
 
 #Twitter API credentials
-consumer_key = "0gzrWgU42coZopvSul5XWIyIl"
-consumer_secret = "CI2Q8x1suBlPsfz3y5QkRqI62rpgdYZQKM552d6Y69x8L0b4Y1"
-access_key = "920759443759026177-4NdyCaI36qzRMOk2pbuiRZ2dLHpDWoP"
-access_secret = "7PqhynxGdD0Ci4Qxb1okbm96C1srMCimTeDiI20vL5gkr"
+consumer_key = "X"
+consumer_secret = "X"
+access_key = "X"
+access_secret = "X"
 
 
 def get_all_tweets(screen_name):
@@ -76,10 +76,8 @@ def get_all_tweets(screen_name):
   
     os.system("ffmpeg -framerate 5 -pattern_type glob -i '*.jpg'     -c:v libx264 -r 30 -pix_fmt yuv420p production.mp4")
    
-    # client = vision.ImageAnnotatorClient()
+    # client = vision.ImageAnnotatorClient() ???
 
-
-    #m=1
     client = vision.ImageAnnotatorClient()
     OBJ = [pic for pic in listdir() if pic.endswith('jpg')]
     for i in OBJ:
@@ -96,7 +94,7 @@ def get_all_tweets(screen_name):
         # Performs label detection on the image file
         response = client.label_detection(image=image)
         labels = response.label_annotations
-        
+        #for i in image:   #
         print('Labels:')
         file.write('Lables:')
         for label in labels:
