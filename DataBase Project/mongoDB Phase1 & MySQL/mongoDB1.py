@@ -1,18 +1,16 @@
+#mongoDB mini project Phase 1
+#import a json file, which records all the airports information in the world, into mongoDB
 from pymongo import MongoClient
-import pprint
 import json
 import bson
 
 client = MongoClient()
 db = client.airports.database
+posts = db.posts
 collection = db.airports_collection
 
-posts = db.posts
 
-
-with open('airports.json') as json_file:
-	new_json = json.loads(json_file.read())
-	for info in new_json:
+inputfile = open('airports.json','r')
+	result = json.loads(inputfile.read())
+	for info in result:
 		posts.insert_one(info)
-
-pprint.pprint(posts.find_one( { 'city': 'Chongqing'}))
